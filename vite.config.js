@@ -1,7 +1,7 @@
 import * as path from 'path'
 import glob from 'glob'
 import vue from '@vitejs/plugin-vue'
-import { default as handlebarsPlugin }  from 'vite-plugin-handlebars'
+import { default as handlebarsPlugin } from 'vite-plugin-handlebars'
 import handlebars from 'handlebars'
 import layouts from 'handlebars-layouts'
 
@@ -25,33 +25,34 @@ glob.sync(paths.icons + '**/*.svg').forEach(function (file) {
 
 function handlebarsOverride(options) {
 	handlebars.registerHelper(layouts(handlebars))
-    const plugin = handlebarsPlugin(options)
-    delete plugin.handleHotUpdate
+	const plugin = handlebarsPlugin(options)
+	delete plugin.handleHotUpdate
 	return plugin
 }
 
 export default {
-    root: 'src',
-    build: {
-        outDir: '../build',
+	root: 'src',
+	build: {
+		outDir: '../build',
 		emptyOutDir: true,
 		copyPublicDir: true,
 		assetsDir: 'assets',
-        rollupOptions: {
-            input: glob.sync(path.resolve(__dirname, 'src/**', '*.html'), { ignore: path.resolve(__dirname, 'src/layouts/**') })
-        },
-    },
-    plugins: [
+		rollupOptions: {
+			// input: glob.sync(path.resolve(__dirname, 'src/**', '*.html'), { ignore: path.resolve(__dirname, 'src/layouts/**') })
+			input: './src/index.html'
+		},
+	},
+	plugins: [
 		handlebarsOverride({
-            partialDirectory: [
+			partialDirectory: [
 				path.resolve(__dirname, 'src/components'),
 				path.resolve(__dirname, 'src/layouts')
 			],
-            reloadOnPartialChange: true,
+			reloadOnPartialChange: true,
 			helpers: {
-                json: (context) => {
-                    return JSON.stringify(context)
-                },
+				json: (context) => {
+					return JSON.stringify(context)
+				},
 				assets: (options) => {
 					let file
 					if (options.data.file) {
@@ -142,7 +143,7 @@ export default {
 				},
 				times: (n, block) => {
 					var accum = ''
-					for (var i = 0;i < n;++i) {
+					for (var i = 0; i < n; ++i) {
 						block.data.index = i
 						block.data.offsetindex = i + 1
 						block.data.first = i === 0
@@ -151,7 +152,7 @@ export default {
 					}
 					return accum
 				}
-            },
+			},
 			runtimeOptions: {
 				data: {
 					blocklist: require('./src/data/blocklist.json'),
@@ -161,9 +162,9 @@ export default {
 					iconList: iconsInSprite,
 				}
 			}
-        }),
+		}),
 		vue()
-    ],
+	],
 	resolve: {
 		alias: {
 			// Fix hot reloading of dynamic components
@@ -178,13 +179,13 @@ export default {
 			'@vueApps': path.resolve(__dirname, './src/assets/js/vue-apps')
 		}
 	},
-    server: {
-        watch: {
-            usePolling: true,
-        },
-        host: true,
-        strictPort: true,
-        port: 5173,
+	server: {
+		watch: {
+			usePolling: true,
+		},
+		host: true,
+		strictPort: true,
+		port: 5173,
 		// Proxy mockoon server
 		proxy: {
 			'/api': {
@@ -193,5 +194,5 @@ export default {
 				secure: false
 			}
 		}
-    }
+	}
 }
