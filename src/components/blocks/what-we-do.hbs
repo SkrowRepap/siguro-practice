@@ -1,0 +1,108 @@
+<div class="p-24">
+	<div class="flex justify-around text-dark min-h-[80px] gap-24">
+		<div class="flex flex-col gap-6 ml-10">
+
+			{{> heading-title text="What we do" textColor="red" backgroundColor="#62b068" }}
+
+			<p class="break-words text-lg w-[50ch]">
+				Offering bespoke and tailored programs for SportsTech companies at all stages of development.
+			</p>
+
+			{{> button text="Find out more" }}
+
+		</div>
+
+		<div class="flex-1 w-fit">
+
+			<div class="swiper mySwiper">
+
+				<div class="swiper-wrapper">
+
+					<div class="swiper-slide">
+
+						{{> what-we-do-card title="Start" src="/assets/img/bulb.svg" contents="By supporting startups
+						with
+						access
+						to experienced mentors, and by connecting them with essential resources to help validate and
+						grow,
+						we
+						are helping to build an ecosystem that can allow the sportstech industry to thrive in Ireland."
+						}}
+					</div>
+
+					<div class="swiper-slide">
+						{{> what-we-do-card title="Grow" src="/assets/img/trending.svg" contents="We work with later
+						state
+						companies to enable them to identify, develop and execute effective go-to market strategies.
+						Through
+						engagement with investors, stakeholders, organizations and teams, we empower sportstech
+						organizations to
+						grow." }}
+					</div>
+
+					<div class="swiper-slide">
+
+						{{> what-we-do-card title="Take-off" src="/assets/img/take-off.svg" contents="We work with later
+						state
+						companies to enable them to identify, develop and execute effective go-to market strategies.
+						Through
+						engagement with investors, stakeholders, organizations and teams, we empower sportstech
+						organizations to
+						grow." }}
+
+					</div>
+				</div>
+
+
+				<br>
+				<br>
+				<div class="swiper-pagination block"></div>
+			</div>
+
+
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+		<!-- Initialize Swiper -->
+		<script>
+			var swiper = new Swiper(".mySwiper", {
+				slidesPerView: 4,
+				spaceBetween: 30,
+				centeredSlides: true,
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: true,
+				},
+
+			});
+		</script>
+
+
+	</div>
+
+
+	<div class="p-24">
+
+		<div class="grid grid-cols-3 grid-rows-2 gap-6">
+			<div class="col-span-2">
+
+				{{> what-we-do-image-box
+				bgImage="https://images.pexels.com/photos/34514/spot-runs-start-la.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				title="Digital Athlete"}}
+			</div>
+			{{> what-we-do-box bgColor="#62b068" title="Women"}}
+			{{> what-we-do-box bgColor="#3e3a86" title="News & Insights"}}
+			<div class="col-span-2">
+
+				{{> what-we-do-image-box
+				bgImage="https://images.pexels.com/photos/5940841/pexels-photo-5940841.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				title="Supporters"}}
+			</div>
+
+
+		</div>
+
+	</div>
+
+</div>
